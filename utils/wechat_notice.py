@@ -11,10 +11,10 @@ server_keys = [
 ]
 
 
-def push_to_wechat(data):
+def push_to_wechat(text, desp):
     data = {
-        "text": "有溢价啦",
-        "desp": "nininsdfa"
+        "text": text,
+        "desp": desp
     }
     for key in server_keys:
         url = f"https://sc.ftqq.com/{key}.send?text="

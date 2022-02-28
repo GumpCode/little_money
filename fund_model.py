@@ -23,9 +23,10 @@ first_pdf_path = "data/2021-03.pdf"
 3. 爬取基金对应的每天净值
 '''
 
-#pro = tushare.pro_api('a1b1980392e6299231d1e3b8af1d0c943e536558f2f32bfd5a69ef2d')
+pro = tushare.pro_api('a1b1980392e6299231d1e3b8af1d0c943e536558f2f32bfd5a69ef2d')
 #data = pro.query("daily", ts_code='000001.SZ', start_date="20210101", end_date="20210110")
 #print(data)
+
 
 if not os.path.exists(year_stock_path) and not os.path.exists(year_bond_path):
     year_stock = {}
@@ -149,7 +150,7 @@ with open(first_stock_path, 'r', encoding='utf8') as f1, \
 stock_percent = 0.8742
 bond_percent = 0.0502
 cash_percent = 0.072
-last_worth = 2.1214
+last_worth = 2.0912
 top_10 = {}
 year_top_10 = sorted(year_stock.items(), key=lambda x: x[1]["index"])[:10]
 first_top_10 = sorted(first_stock.items(), key=lambda x: x[1]["index"])[:10]
@@ -176,12 +177,13 @@ for k, v in year_stock.items():
 stock_now_percent = 0
 for k, v in now_stock.items():
     diff = v['price'] / v['pre_close']
+    print(k, v['price'], v['pre_close'])
     stock_now_percent += v['percent'] * diff
 
-bond_now_percent = 0
-for k, v in first_bond.items():
-    diff = v['price'] / v['pre_close']
-    bond_now_percent += v['percent'] * diff
+#bond_now_percent = 0
+#for k, v in first_bond.items():
+#    diff = v['price'] / v['pre_close']
+#    bond_now_percent += v['percent'] * diff
 
 stock = 23749599191.28
 bond = 1364435355.28
@@ -193,4 +195,5 @@ print(stock + bond + cash + other)
 print(stock / total)
 
 now_stock = stock * stock_now_percent/stock_percent
+print(now_stock)
 print(last_worth * (now_stock + bond + cash + other) / total)

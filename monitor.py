@@ -5,8 +5,8 @@
 
 import schedule
 from fund_sprider import JslFund, EastMoneyFund
-from wechat_notice import push_to_wechat
-from utils import today_is_tradeday, between_special_time
+from utils.utils import push_to_wechat
+from utils.utils import between_special_time
 
 
 active_fund = {
